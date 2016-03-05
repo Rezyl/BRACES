@@ -1,5 +1,3 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <article>
 	<h1>Zájezdy</h1>
 
@@ -19,22 +17,22 @@
 			<tr><th>ID</th><th>Cílová země</th><th>Typ dopravy</th><th>Kategorie</th><th>Stravování</th><th>Ubytování</th><th>Délka zájezdu</th><th>Termín</th><th>Cena</th><th></th><th></th></tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${tours}" var="tour">
-				<tr>
-					<td><c:out value="${tour.id}"/></td>
-					<td><c:out value="${tour.country}"/></td>
-					<td><c:out value="${tour.transportType}"/></td>
-					<td><c:out value="${tour.category}"/></td>
-					<td><c:out value="${tour.catering}"/></td>
-					<td><c:out value="${tour.accommodation}"/></td>
-					<td><c:out value="${tour.tourLength}"/></td>
-					<td><c:out value="${tour.date}"/></td>
-					<td><c:out value="${tour.price}"/> Kč</td>
-					<td><a href="#" class="btn btn-default btn-primary"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span> Zobrazit</a></td>
-					<td><a href="#" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>
-					<td><a href="#" class="btn btn-default btn-danger"><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span> Odstranit</a></td>
-				</tr>
-			</c:forEach>
+			<%--<c:forEach items="${tours}" var="tour">--%>
+				<%--<tr>--%>
+					<%--<td><c:out value="${tour.id}"/></td>--%>
+					<%--<td><c:out value="${tour.country}"/></td>--%>
+					<%--<td><c:out value="${tour.transportType}"/></td>--%>
+					<%--<td><c:out value="${tour.category}"/></td>--%>
+					<%--<td><c:out value="${tour.catering}"/></td>--%>
+					<%--<td><c:out value="${tour.accommodation}"/></td>--%>
+					<%--<td><c:out value="${tour.tourLength}"/></td>--%>
+					<%--<td><c:out value="${tour.date}"/></td>--%>
+					<%--<td><c:out value="${tour.price}"/> Kč</td>--%>
+					<%--<td><a href="#" class="btn btn-default btn-primary"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span> Zobrazit</a></td>--%>
+					<%--<td><a href="#" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a></td>--%>
+					<%--<td><a href="#" class="btn btn-default btn-danger"><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span> Odstranit</a></td>--%>
+				<%--</tr>--%>
+			<%--</c:forEach>--%>
 		</tbody>
 	</table>
 	
