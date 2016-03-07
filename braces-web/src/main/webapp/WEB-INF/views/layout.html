@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="cs">
+<html lang="cs" xmlns:th="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8" />
 
@@ -13,10 +13,10 @@
 		<meta name="robots" content="index, follow" />
 		<meta name="googlebot" content="snippet, archive" />
 
-		<link rel="stylesheet" href="./css/bootstrap.min.css" />
-		<link rel="stylesheet" href="./css/style.css" />
-		<script src="./js/jquery-1.12.0.min.js"></script>
-		<script src="./js/script.js"></script>
+		<link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/resources/css/style.css" />
+		<script src="/resources/js/jquery-1.12.0.min.js"></script>
+		<script src="/resources/js/script.js"></script>
 	</head>
 	<body>
 
@@ -61,9 +61,7 @@
 <!--MAIN-CONTENT-->
 			<main>
 				<!--HLAVNÍ OBSAH WEBU !!!!!!!!!!!!!!!!!!!!!-->
-				<jsp:include page="${pageName}.jsp" flush="true"/>
 				<p th:text="${testAtr}">Static text </p>
-				<p>Static text 2</p>
 			</main>
 		</div>
 

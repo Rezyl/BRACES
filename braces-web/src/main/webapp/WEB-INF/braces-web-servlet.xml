@@ -30,7 +30,7 @@
 		<property name="characterEncoding" value="UTF-8" />
 	</bean>
 
-    <mvc:resources mapping="/resources/**" location="../resources/"/>
+    <mvc:resources mapping="/resources/**" location="resources/"/>
 
     <import resource="classpath:braces-core-context.xml"/>
 
