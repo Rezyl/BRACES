@@ -3,4 +3,4 @@ DEPLOY_DIR=$OPENSHIFT_PRIMARY_CARTRIDGE_DIRwebapps
 rm ${DEPLOY_DIR}/ROOT.war
 cd ${DEPLOY_DIR}
 #download  and extract the latest product
-curl -u$JENKINS_USERNAME:$JENKINS_PASSWORD -v "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war" > ROOT.war
+curl -u$JENKINS_USERNAME:$JENKINS_PASSWORD -O "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war"
