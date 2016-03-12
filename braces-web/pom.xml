@@ -49,17 +49,4 @@
 		</dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <webappDirectory>/var/lib/openshift/56df22a62d527161a3000166/jbossews/webapps/</webappDirectory>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
 </project>
