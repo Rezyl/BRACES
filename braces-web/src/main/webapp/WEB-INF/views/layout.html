@@ -32,8 +32,10 @@
 				<a href="/odhlaseni/">Odhlášení</a>
 			</nav>
 			<nav id="language-navigation">
-				<a href="/cs/" hreflang="cs" class="selected"><abbr lang="cs" title="Czech">cs</abbr></a>
-				<a href="/en/" hreflang="en"><abbr lang="en" title="English">en</abbr></a>
+<!-- 				<a href="?language=cs" hreflang="cs" class="selected"><abbr lang="cs" title="Czech">cs</abbr></a> -->
+<!-- 				<a href="?language=en" hreflang="en"><abbr lang="en" title="English">en</abbr></a> -->
+				<a href="?language=cs" hreflang="cs" th:class="(__${#locale}__=='cs'?'selected':'')"><abbr lang="cs" title="Czech">cs</abbr></a>
+				<a href="?language=en" hreflang="en" th:class="(__${#locale}__=='en'?'selected':'')"><abbr lang="en" title="English">en</abbr></a>
 			</nav>
 		</div>
 
@@ -62,6 +64,12 @@
 			<main>
 				<!--HLAVNÍ OBSAH WEBU !!!!!!!!!!!!!!!!!!!!!-->
 				<p th:text="${testAtr}">Static text </p>
+				<p th:text="#{layout.testMessage}">Static text 3</p>
+				<p th:text="${#locale}">
+<!-- 				<spring:message code="layout.testMessage" text="default text" /> -->
+				 
+				</p>
+<!-- 				<div th:include="${template}"></div>	 -->
 			</main>
 		</div>
 
