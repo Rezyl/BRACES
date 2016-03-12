@@ -4,5 +4,5 @@ rm -Rf ${DEPLOY_DIR}
 mkdir -p ${DEPLOY_DIR}
 cd ${DEPLOY_DIR}
 #download  and extract the latest product
-curl -uroot:tfVP5jT3G9Yr  -nv "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war"
+curl -uroot:tfVP5jT3G9Yr  -ov "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war"
 mv BRACES.war ROOT.war
