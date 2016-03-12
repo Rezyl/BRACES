@@ -25,7 +25,7 @@
     <name>BRACES</name>
 
     <build>
-        <finalName>BRACES</finalName>
+        <finalName>ROOT</finalName>
     </build>
 
     <dependencies>
