@@ -14,7 +14,7 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homePage() {
-		return "layout";
+		return "tours";
 	}
 	
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
