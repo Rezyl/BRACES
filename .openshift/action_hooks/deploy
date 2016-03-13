@@ -1,7 +1,9 @@
-DEPLOY_DIR=$OPENSHIFT_PRIMARY_CARTRIDGE_DIRwebapps/
-#delete the old deployment
-rm ${DEPLOY_DIR}ROOT.war
-cd ${DEPLOY_DIR}
-#download  and extract the latest product
-su $USER
-curl -u$JENKINS_USERNAME:$JENKINS_PASSWORD -oROOT.war "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war"
+#DEPLOY_DIR=$OPENSHIFT_PRIMARY_CARTRIDGE_DIRwebapps/
+##delete the old deployment
+#rm ${DEPLOY_DIR}ROOT.war
+#cd ${DEPLOY_DIR}
+##download  and extract the latest product
+#su $USER
+#curl -u$JENKINS_USERNAME:$JENKINS_PASSWORD -oROOT.war "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war"
+
+#wget --user=$JENKINS_USERNAME --password=$JENKINS_PASSWORD -O "https://jenkins-rezys.rhcloud.com/job/braces-build/lastSuccessfulBuild/artifact/braces-web/target/BRACES.war"
