@@ -7,66 +7,49 @@ html, body {
 	text-align: center;
 }
 
-#top-bar {
-	display: inline-block;
-	width: 100%;
-	min-width: 320px;
-	max-width: 1100px;
-	height: 50px;
+#vertical-wrapper {
+	min-height: 100%;
+	height: auto;
+	margin: 0 auto -125px; /* (footer height - display-inline fix) */
+	padding: 0 0 120px;
+}
+
+#top-bar { /* bootstrap default style reset */
 	background-color: #ffffff;
-	margin: auto;
+	border: 0px;
+	margin: 0px;
+	border-radius: 0px;
 }
 
-#account-navigation {
-	float: left;
-	padding: 0px 15px 0px 0px;
-	height: 50px;
-}
-
-#account-navigation a {
-	float: left;
-	height: 50px;
-	padding: 0px 15px 0px 15px;
-	line-height: 50px;
-}
-
-#language-navigation {
-	float: right;
-	padding: 0px 0px 0px 15px;
-	height: 50px;
-}
-
-#language-navigation a {
-	float: left;
-	height: 50px;
-	padding: 0px 15px 0px 15px;
-	line-height: 50px;
-}
-
-#language-navigation a.selected {
-	background-color: #00aff0;
-	color: #ffffff;
-	font-weight: bold;
+#top-bar .container { /* bootstrap default style reset */
+	max-width: 1100px;
 }
 
 #main-header {
 	float: left;
 	width: 100%;
 	height: 320px;
-	margin-top: -5px;	/* display-inline fix */
 	background-image: url('./../images/header.jpg');
 	background-repeat: no-repeat;
 	background-size: cover;
 }
 
-#main-header img {
+#main-header .wrapper {
+	display: inline-block;
+	width: 100%;
+	min-width: 320px;
+	max-width: 1100px;
+	height: 100%;
 	margin: auto;
+}
+
+#main-header img {
+	float: left;
 	width: 250px;
-	margin-right: 850px;
 	margin-top: 100px;
 }
 
-#wrapper {
+#horizontal-wrapper {
 	display: inline-block;
 	width: 100%;
 	min-width: 320px;
@@ -81,45 +64,48 @@ html, body {
 	width: 180px;
 	min-height: 500px;
 	padding-top: 20px;
+	text-align: left;
 }
 
 #main-navigation a {
-	box-sizing: border-box;
-	float: left;
-	width: 100%;
-	height: 30px;
-	padding-left: 15px;
-	line-height: 30px;
-	text-align: left;
-	text-decoration: none;
-	color: #000000;
+	padding: 7px 0px 7px 10px;
 }
 
-#main-navigation a:hover {
+#main-navigation a .glyphicon-menu-down {
+	float: right;
+	margin-right: 10px;
+}
+
+#main-navigation .active a {
 	background-color: #00aff0;
-	color: #ffffff;
-	font-weight: bold;
+}
+
+#main-navigation ul ul a {
+	padding-left: 30px;
 }
 
 main {
 	box-sizing: border-box;
-	float: none;
-	width: 100%;
+	float: left;
+	width: calc(100% - 180px);
 	min-width: 320px;
-	max-width: 900px;
+	max-width: 920px;
 	min-height: 500px;
 	padding: 0px 10px 10px 30px;
-	overflow: hidden;
 	text-align: justify;
-	background-color: white;
+}
+
+@media (max-width: 768px) {
+	#main-navigation, main {
+		width: 100%;
+	}
 }
 
 #main-footer {
 	float: left;
 	width: 100%;
 	min-width: 320px;
-	min-height: 250px;
-	margin-top: -5px;	/* display-inline fix */
+	height: 130px;
 	background-color: #000000;
 	color: #ffffff;
 	text-align: center;
