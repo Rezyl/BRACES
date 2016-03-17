@@ -42,8 +42,8 @@
 						<div class="input-group">
 							<div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
 							<select name="language" class="form-control" onchange="this.form.submit()">
-								<option th:selected="(__${#locale}__=='cs'?'selected':'')" value="cs" lang="cs">čeština</option>
-								<option th:selected="(__${#locale}__=='en'?'selected':'')" value="en" lang="en">english</option>
+								<option th:selected="(__${#locale}__=='cs')" value="cs" lang="cs">čeština</option>
+								<option th:selected="(__${#locale}__=='en')" value="en" lang="en">english</option>
 							</select>
 						</div>
 					</div>
