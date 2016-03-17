@@ -1,7 +1,7 @@
 package cz.uhk.braces.service.impl;
 
-import cz.uhk.braces.model.Country;
-import cz.uhk.braces.repository.CountryRepository;
+import cz.uhk.braces.model.Tour;
+import cz.uhk.braces.repository.TourRepository;
 import cz.uhk.braces.service.CRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import org.springframework.stereotype.Service;
  * Date: 27.2.16
  */
 @Service
-public class TourServiceImpl extends AbstractCRUDService<Country, CountryRepository> implements CRUDService<Country> {
+public class TourServiceImpl extends AbstractCRUDService<Tour, TourRepository> implements CRUDService<Tour> {
 
 	@Autowired
-	protected TourServiceImpl(CountryRepository repository) {
+	protected TourServiceImpl(TourRepository repository) {
 		super(repository);
 	}
 }

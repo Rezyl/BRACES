@@ -23,6 +23,13 @@
 
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
 		<property name="templateResolver" ref="templateResolver" />
+
+		<!--<property name="dialects">-->
+			<!--<set>-->
+				<!--<bean class="org.thymeleaf.spring4.dialect.SpringStandardDialect"></bean>-->
+				<!--<bean class="uk.co.gcwilliams.jodatime.thymeleaf.JodaTimeDialect"></bean>-->
+			<!--</set>-->
+		<!--</property>-->
 	</bean>
 
 	<bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
