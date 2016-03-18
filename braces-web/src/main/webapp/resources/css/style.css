@@ -61,7 +61,7 @@ html, body {
 #main-navigation {
 	box-sizing: border-box;
 	float: left;
-	width: 180px;
+	width: 150px;
 	min-height: 500px;
 	padding-top: 20px;
 	text-align: left;
@@ -87,11 +87,11 @@ html, body {
 main {
 	box-sizing: border-box;
 	float: left;
-	width: calc(100% - 180px);
+	width: calc(100% - 150px);
 	min-width: 320px;
-	max-width: 920px;
+	max-width: 960px;
 	min-height: 500px;
-	padding: 0px 10px 10px 30px;
+	padding: 0px 10px 10px 20px;
 	text-align: justify;
 }
 
