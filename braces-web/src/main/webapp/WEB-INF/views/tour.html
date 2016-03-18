@@ -1,0 +1,26 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<h2 class="modal-title">Detail zájezdu</h2>
+</div>
+
+<div class="modal-body">
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<tr><th>Destinace</th><td th:text="${tour.country.countryName}"></td></tr>
+			<tr><th>Kategorie</th><td th:text="${tour.category.displayName}"></td></tr>
+			<tr><th>Ubytování</th><td th:text="${tour.accommodation.displayName}"></td></tr>
+			<tr><th>Stravování</th><td th:text="${tour.catering.displayName}"></td></tr>
+			<tr><th>Doprava</th><td th:text="${tour.transportType.displayName}"></td></tr>
+			<tr><th>Délka zájezdu</th><td></td></tr>
+			<tr><th>Od</th><td></td></tr>
+			<tr><th>Do</th><td></td></tr>
+			<tr><th>Cena</th><td th:text="${tour.price}"> Kč</td></tr>
+		</table>		
+	</div>
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span> Odstranit</button>
+	<button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</button>
+	<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</button>
+</div>
