@@ -2,7 +2,9 @@ package cz.uhk.braces.dataset.main;
 
 import cz.uhk.braces.MainLoader;
 import cz.uhk.braces.dataset.AbstractDataset;
+import cz.uhk.braces.dataset.ContractTestDataset;
 import cz.uhk.braces.dataset.CountryDataset;
+import cz.uhk.braces.dataset.TourParticipantTestDataset;
 import cz.uhk.braces.dataset.TourTestDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,12 @@ public class ReloadTestDataset extends AbstractDataset {
 
 	@Autowired
 	private TourTestDataset tourTestDataset;
+	
+	@Autowired
+	private TourParticipantTestDataset tourParticipantTestDataset;
+	
+	@Autowired
+	private ContractTestDataset contractTestDataset;
 
 
 
@@ -30,5 +38,7 @@ public class ReloadTestDataset extends AbstractDataset {
 	protected void loadData() {
 		countryDataset.load();
 		tourTestDataset.load();
+		tourParticipantTestDataset.load();
+		contractTestDataset.load();
 	}
 }
