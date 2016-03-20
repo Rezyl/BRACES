@@ -62,9 +62,9 @@
 
 <!--NAVIGATION-->
 			<nav id="main-navigation">
-				<ul class="nav nav-pills nav-stacked">
-					<li role="presentation" class="active"><a href="/tour/showAllTours/"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Zájezdy</a></li>
-					<li role="presentation"><a href="/smlouvy/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Smlouvy</a></li>
+				<ul class="nav nav-pills nav-stacked">		
+					<li role="presentation" th:class="(${view} == 'tours'?'active':'')"><a href="/tour/showAllTours/"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Zájezdy</a></li>
+					<li role="presentation" th:class="(${view} == 'contracts'?'active':'')"><a href="/contract/showAllContracts/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Smlouvy</a></li>
 					<li role="presentation"><a href="/reporty/"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporty</a></li>
 					<li role="presentation"><a href="/export/"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export na Web</a></li>
 					<li>

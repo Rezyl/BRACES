@@ -12,20 +12,20 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>
+						<th>Datum vytvoření</th>
+						<th>ID zájezdu</th>
+						<th>Jméno kontaktní osoby</th>
+						<th>Přijmení kontaktní osoby </th>
+						<th>Uhrazená částka</th>
 					</tr>
 				</thead>
 				<tbody th:each="contract : ${contracts}">
 					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+						<td th:text="${contract.creationDate}"></td>
+						<td th:text="${contract.tour.tourID}"></td>
+						<td th:text="${contract.contactParticipant.firstName}"></td>
+						<td th:text="${contract.contactParticipant.lastName}"></td>
+						<td th:text="${contract.pricePayed}"></td>
 					</tr>
 				</tbody>
 			</table>		

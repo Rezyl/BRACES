@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
 @Entity
@@ -35,6 +36,7 @@ public class Contract {
 	private Tour tour;
 	
 	@Column(name = "creation_date", nullable = false)
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime creationDate;
 	
 	//Zaplacena cast, napr zaloha

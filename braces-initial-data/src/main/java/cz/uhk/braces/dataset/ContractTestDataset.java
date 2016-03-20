@@ -41,6 +41,7 @@ public class ContractTestDataset extends AbstractDataset {
 			contract.setCreationDate(new DateTime());
 			contract.setPricePayed(new BigDecimal(1000));
 			contract.setTour(tours.get(0));
+			contractService.update(contract);
 		}
 
 
