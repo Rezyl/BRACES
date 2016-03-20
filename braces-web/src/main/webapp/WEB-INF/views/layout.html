@@ -21,73 +21,70 @@
 	</head>
 	<body>
 		<div id="vertical-wrapper">
+
 <!--TOP-BAR-->
-		<nav class="navbar navbar-default" id="top-bar">
-			<div class="container">
-				<ul class="nav navbar-nav">
-					<li><a href="/prihlaseni/"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Přihlášení</a></li>
-					<li><a href="/registrace/">Registrace</a></li>
-					<!--	NEMAZAT ! - STAV PO PŘIHLÁŠENÍ
-					<li><a href="/odhlaseni/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Odhlášení</a></li>
-					<li><a href="/ucet/"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Účet</a></li>
-					-->
-				</ul>
+			<nav class="navbar navbar-default" id="top-bar">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<li><a href="/prihlaseni/"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Přihlášení</a></li>
+						<li><a href="/registrace/">Registrace</a></li>
+						<!--	NEMAZAT ! - STAV PO PŘIHLÁŠENÍ
+						<li><a href="/odhlaseni/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Odhlášení</a></li>
+						<li><a href="/ucet/"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Účet</a></li>
+						-->
+					</ul>
 
-				<!--
-				<a href="?language=cs" hreflang="cs" th:class="(__${#locale}__=='cs'?'selected':'')"><abbr lang="cs" title="Czech">cs</abbr></a>
-				<a href="?language=en" hreflang="en" th:class="(__${#locale}__=='en'?'selected':'')"><abbr lang="en" title="English">en</abbr></a>
-				-->
-				<form action="" method="get" class="navbar-form navbar-right">
-					<div class="form-group">
-						<div class="input-group">
-							<div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
-							<select name="language" class="form-control" onchange="this.form.submit()">
-								<option th:selected="(__${#locale}__=='cs')" value="cs" lang="cs">čeština</option>
-								<option th:selected="(__${#locale}__=='en')" value="en" lang="en">english</option>
-							</select>
+					<form action="" method="get" class="navbar-form navbar-right">
+						<div class="form-group">
+							<div class="input-group">
+								<div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+								<select name="language" class="form-control" onchange="this.form.submit()">
+									<option th:selected="(__${#locale}__=='cs')" value="cs" lang="cs">čeština</option>
+									<option th:selected="(__${#locale}__=='en')" value="en" lang="en">english</option>
+								</select>
+							</div>
 						</div>
-					</div>
-				</form>
-			</div>
-		</nav>
-
-<!--HEADER-->
-		<header id="main-header">
-			<div class="wrapper">
-				<img src="/resources/images/logo.png" alt="BRACES" />
-			</div>
-		</header>
-
-		<div id="horizontal-wrapper">
-
-<!--NAVIGATION-->
-			<nav id="main-navigation">
-				<ul class="nav nav-pills nav-stacked">		
-					<li role="presentation" th:class="(${view} == 'tours'?'active':'')"><a href="/tour/showAllTours/"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Zájezdy</a></li>
-					<li role="presentation" th:class="(${view} == 'contracts'?'active':'')"><a href="/contract/showAllContracts/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Smlouvy</a></li>
-					<li role="presentation"><a href="/reporty/"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporty</a></li>
-					<li role="presentation"><a href="/export/"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export na Web</a></li>
-					<li>
-						<a data-toggle="collapse" href="#submenu-rezervace">
-							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Rezervace <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
-						</a>          
-						<ul class="nav nav-pills nav-stacked collapse" id="submenu-rezervace">
-							<li role="presentation"><a href="/jizdenky/"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Jízdenky</a></li>
-							<li role="presentation"><a href="/letenky/"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Letenky</a></li>
-							<li role="presentation"><a href="/hotely/"><span class="glyphicon glyphicon-bed" aria-hidden="true"></span> Hotely</a></li>
-						</ul>
-					</li>
-					<li role="presentation"><a href="/ucetnictvi/"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Účetnictví</a></li>
-					<li role="presentation"><a href="/pojisteni/"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Pojištění</a></li>
-				</ul>
+					</form>
+				</div>
 			</nav>
 
+<!--HEADER-->
+			<header id="main-header">
+				<div class="wrapper">
+					<img src="/resources/images/logo.png" alt="BRACES" />
+				</div>
+			</header>
+
+			<div id="horizontal-wrapper">
+
+<!--NAVIGATION-->
+				<nav id="main-navigation">
+					<ul class="nav nav-pills nav-stacked">		
+						<li role="presentation" th:class="(${view} == 'tours'?'active':'')"><a href="/tour/showAllTours/"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Zájezdy</a></li>
+						<li role="presentation" th:class="(${view} == 'contracts'?'active':'')"><a href="/contract/showAllContracts/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Smlouvy</a></li>
+						<li role="presentation"><a href="/reporty/"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporty</a></li>
+						<li role="presentation"><a href="/export/"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export na Web</a></li>
+						<li>
+							<a data-toggle="collapse" href="#submenu-rezervace">
+								<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Rezervace <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+							</a>          
+							<ul class="nav nav-pills nav-stacked collapse" id="submenu-rezervace">
+								<li role="presentation"><a href="/jizdenky/"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Jízdenky</a></li>
+								<li role="presentation"><a href="/letenky/"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Letenky</a></li>
+								<li role="presentation"><a href="/hotely/"><span class="glyphicon glyphicon-bed" aria-hidden="true"></span> Hotely</a></li>
+							</ul>
+						</li>
+						<li role="presentation"><a href="/ucetnictvi/"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Účetnictví</a></li>
+						<li role="presentation"><a href="/pojisteni/"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Pojištění</a></li>
+					</ul>
+				</nav>
+
 <!--MAIN-CONTENT-->
-			<main th:replace="${view} :: content">
-				<!--<spring:message code="layout.testMessage" text="default text" />-->
-				Content
-			</main>
-		</div>
+				<main th:replace="${view} :: content">
+					<!--<spring:message code="layout.testMessage" text="default text" />-->
+					Content
+				</main>
+			</div>
 		</div>
 
 <!--FOOTER-->
