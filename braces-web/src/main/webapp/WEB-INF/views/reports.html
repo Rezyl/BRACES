@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+
+<html lang="cs" xmlns:th="http://www.w3.org/1999/xhtml">		<!-- xhtml?????????????? -->
+	<head>
+		<meta charset="utf-8" />
+
+		<title>BRACES</title>
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="shortcut icon" href="/resources/images/favicon.ico" />
+		<meta name="author" content="Scorpio" />
+
+		<meta name="robots" content="index, follow" />
+		<meta name="googlebot" content="snippet, archive" />
+
+		<link rel="stylesheet" href="/resources/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="/resources/css/style.css" />
+		<script src="/resources/js/jquery-1.12.0.min.js"></script>
+		<script src="/resources/js/bootstrap.min.js"></script>
+		<!--<script src="/resources/js/script.js"></script>-->
+	</head>
+	<body>
+		<div id="vertical-wrapper">
+<!--TOP-BAR-->
+		<nav class="navbar navbar-default" id="top-bar">
+			<div class="container">
+				<ul class="nav navbar-nav">
+					<li><a href="/prihlaseni/"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Přihlášení</a></li>
+					<li><a href="/registrace/">Registrace</a></li>
+					<!--	NEMAZAT ! - STAV PO PŘIHLÁŠENÍ
+					<li><a href="/odhlaseni/"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Odhlášení</a></li>
+					<li><a href="/ucet/"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Účet</a></li>
+					-->
+				</ul>
+
+				<!--
+				<a href="?language=cs" hreflang="cs" th:class="(__${#locale}__=='cs'?'selected':'')"><abbr lang="cs" title="Czech">cs</abbr></a>
+				<a href="?language=en" hreflang="en" th:class="(__${#locale}__=='en'?'selected':'')"><abbr lang="en" title="English">en</abbr></a>
+				-->
+				<form action="" method="get" class="navbar-form navbar-right">
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon"><span class="glyphicon glyphicon-globe" aria-hidden="true"></span></div>
+							<select name="language" class="form-control" onchange="this.form.submit()">
+								<option th:selected="(__${#locale}__=='cs')" value="cs" lang="cs">čeština</option>
+								<option th:selected="(__${#locale}__=='en')" value="en" lang="en">english</option>
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+		</nav>
+
+<!--HEADER-->
+		<header id="main-header">
+			<div class="wrapper">
+				<img src="/resources/images/logo.png" alt="BRACES" />
+			</div>
+		</header>
+
+		<div id="horizontal-wrapper">
+
+<!--NAVIGATION-->
+			<nav id="main-navigation">
+				<ul class="nav nav-pills nav-stacked">		
+					<li role="presentation" th:class="(${view} == 'tours'?'active':'')"><a href="/tour/showAllTours/"><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Zájezdy</a></li>
+					<li role="presentation" th:class="(${view} == 'contracts'?'active':'')"><a href="/contract/showAllContracts/"><span class="glyphicon glyphicon-file" aria-hidden="true"></span> Smlouvy</a></li>
+					<li role="presentation"><a href="/reporty/"><span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporty</a></li>
+					<li role="presentation"><a href="/export/"><span class="glyphicon glyphicon-export" aria-hidden="true"></span> Export na Web</a></li>
+					<li>
+						<a data-toggle="collapse" href="#submenu-rezervace">
+							<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span> Rezervace <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span>
+						</a>          
+						<ul class="nav nav-pills nav-stacked collapse" id="submenu-rezervace">
+							<li role="presentation"><a href="/jizdenky/"><span class="glyphicon glyphicon-road" aria-hidden="true"></span> Jízdenky</a></li>
+							<li role="presentation"><a href="/letenky/"><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Letenky</a></li>
+							<li role="presentation"><a href="/hotely/"><span class="glyphicon glyphicon-bed" aria-hidden="true"></span> Hotely</a></li>
+						</ul>
+					</li>
+					<li role="presentation"><a href="/ucetnictvi/"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Účetnictví</a></li>
+					<li role="presentation"><a href="/pojisteni/"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span> Pojištění</a></li>
+				</ul>
+			</nav>
+
+<!--MAIN-CONTENT-->
+
+<main th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+	<script src="/resources/js/chart.min.js"></script>
+	
+	<article>
+		<h1>Reporty</h1>
+
+		<h2>Smlouvy</h2>
+		<canvas id="contracts-chart" width="1600" height="400"></canvas>
+
+		<h2>Destinace</h2>
+		<div style="width: 300px; height: 200px; margin-top: 20px; float: left;">
+			<canvas id="country-chart"></canvas>
+		</div>
+		
+		<div style="width: 300px; height: 200px; margin-top: 20px; float: left;">
+			<canvas id="city-chart"></canvas>
+		</div>
+		
+		<div style="width: 300px; height: 200px; margin-top: 20px; float: left;">
+			<canvas id="hotel-chart"></canvas>
+		</div>
+	</article>
+<script>
+var options = {
+	animationSteps : 60,
+	animationEasing : "easeInExpo",
+	responsive: true,
+	bezierCurve : true,
+	scaleBeginAtZero: true,
+}
+
+var data = {
+    labels: ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec"],
+    datasets: [
+        {
+            label: "Uzavřené smlouvy",
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(151,187,205,1)",
+            data: [65, 59, 80, 81, 56, 55, 40]
+        },
+        {
+            label: "Vypovězené smlouvy",
+            fillColor: "rgba(220,220,220,0.2)",
+            strokeColor: "rgba(220,220,220,1)",
+            pointColor: "rgba(220,220,220,1)",
+            pointStrokeColor: "#fff",
+            pointHighlightFill: "#fff",
+            pointHighlightStroke: "rgba(220,220,220,1)",
+            data: [28, 28, 10, 2, 26, 27, 15]
+        }
+    ]
+};
+
+var ctx = document.getElementById("contracts-chart").getContext("2d");
+var myLineChart = new Chart(ctx).Line(data, options);
+	
+var data = [
+    {
+        value: 300,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Itálie"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Řecko"
+    },
+    {
+        value: 100,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Španělsko"
+    }
+]
+
+var ctx = document.getElementById("country-chart").getContext("2d");
+var myDoughnutChart = new Chart(ctx).Doughnut(data,options);
+	
+var data = [
+    {
+        value: 100,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Řím"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Athény"
+    },
+    {
+        value: 120,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Madrid"
+    }
+]
+
+var ctx = document.getElementById("city-chart").getContext("2d");
+var myDoughnutChart = new Chart(ctx).Doughnut(data,options);
+	
+	
+var data = [
+    {
+        value: 50,
+        color:"#F7464A",
+        highlight: "#FF5A5E",
+        label: "Hotel1"
+    },
+    {
+        value: 50,
+        color: "#46BFBD",
+        highlight: "#5AD3D1",
+        label: "Hotel2"
+    },
+    {
+        value: 50,
+        color: "#FDB45C",
+        highlight: "#FFC870",
+        label: "Hotel3"
+    }
+]
+
+var ctx = document.getElementById("hotel-chart").getContext("2d");
+var myDoughnutChart = new Chart(ctx).Doughnut(data,options);
+</script>
+</main>	
+		</div>
+		</div>
+
+<!--FOOTER-->
+		<footer id="main-footer">
+			&copy; 2016 BRACES | Scorpio | Mapa stránek
+		</footer>
+	</body>
+</html>
