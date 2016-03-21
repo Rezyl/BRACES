@@ -1,0 +1,53 @@
+<main th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+	<article>
+		<ol class="breadcrumb">
+			<li><a href="">Rezervace</a></li>
+			<li class="active">Hotely</li>
+		</ol>
+		
+		<h1>Ubytování</h1>
+
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Typ</th><!--hotel apod. -->
+						<th>Hodnocení</th><!-- počet hvězdiček <1;5> -->
+						<th>Název</th><!--Hilton-->
+						<th>Stát</th>
+						<th>Město</th>
+						<th>Kapacita</th><!--počet osob-->
+						<th>Fakultativní služby</th><!--praní prádla apod.-->
+						<th>Cena</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><a href="/ubytovani/rezervovat//" class="btn btn-primary" title="Rezervovat"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Rezervovat</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<nav>
+			<ul class="pagination">
+				<li><a href="#" aria-label="Předchozí"><span aria-hidden="true">&laquo;</span></a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#" aria-label="Další"><span aria-hidden="true">&raquo;</span></a></li>
+			</ul>
+		</nav>
+	</article>
+</main>
