@@ -14,12 +14,12 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homePage() {
-		return "tours";
+		return "redirect:/tour/showAllTours/";
 	}
-	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
-	public String testThymeleaf(Model model){
-		model.addAttribute("testAtr", "Dynamic text");
-		return "layout";
+
+//	TODO temporary controller
+	@RequestMapping(value = "showAllReports/", method = RequestMethod.GET)
+	public String showAllTours(Model model) {
+		return "reports";
 	}
 }

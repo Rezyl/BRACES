@@ -1,5 +1,6 @@
 package cz.uhk.braces.model;
 
+import cz.uhk.braces.model.register.RegisterItem;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
@@ -23,28 +24,36 @@ public class Tour {
 	@JoinColumn(name = "country_fk", referencedColumnName = "country_id", nullable = false)
 	private Country country;
 
-	@Column(name = "type")
-	@Enumerated(EnumType.STRING)
-	private TransportType transportType;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "type", referencedColumnName = "code", nullable = false)
+	private RegisterItem type;
 
-	@Column(name = "category")
-	@Enumerated(EnumType.STRING)
-	private TourCategory category;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "transport", referencedColumnName = "code", nullable = false)
+	private RegisterItem transportType;
 
-	@Column(name = "catering")
-	@Enumerated(EnumType.STRING)
-	private TourCatering catering;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "category", referencedColumnName = "code", nullable = false)
+	private RegisterItem category;
 
-	@Column(name = "accommodation")
-	@Enumerated(EnumType.STRING)
-	private TourAccommodation accommodation;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "catering", referencedColumnName = "code", nullable = false)
+	private RegisterItem catering;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "accommodation", referencedColumnName = "code", nullable = false)
+	private RegisterItem accommodation;
 
 	@Column(name = "length")
 	private int tourLength;
 
-	@Column(name = "date")
+	@Column(name = "date_from")
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
-	private DateTime date;
+	private DateTime dateFrom;
+
+	@Column(name = "date_to")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
+	private DateTime dateTo;
 
 	@Column
 	private BigDecimal price;
@@ -65,35 +74,43 @@ public class Tour {
 		this.country = country;
 	}
 
-	public TransportType getTransportType() {
+	public RegisterItem getType() {
+		return type;
+	}
+
+	public void setType(RegisterItem type) {
+		this.type = type;
+	}
+
+	public RegisterItem getTransportType() {
 		return transportType;
 	}
 
-	public void setTransportType(TransportType transportType) {
+	public void setTransportType(RegisterItem transportType) {
 		this.transportType = transportType;
 	}
 
-	public TourCategory getCategory() {
+	public RegisterItem getCategory() {
 		return category;
 	}
 
-	public void setCategory(TourCategory category) {
+	public void setCategory(RegisterItem category) {
 		this.category = category;
 	}
 
-	public TourCatering getCatering() {
+	public RegisterItem getCatering() {
 		return catering;
 	}
 
-	public void setCatering(TourCatering catering) {
+	public void setCatering(RegisterItem catering) {
 		this.catering = catering;
 	}
 
-	public TourAccommodation getAccommodation() {
+	public RegisterItem getAccommodation() {
 		return accommodation;
 	}
 
-	public void setAccommodation(TourAccommodation accommodation) {
+	public void setAccommodation(RegisterItem accommodation) {
 		this.accommodation = accommodation;
 	}
 
@@ -105,12 +122,20 @@ public class Tour {
 		this.tourLength = tourLength;
 	}
 
-	public DateTime getDate() {
-		return date;
+	public DateTime getDateFrom() {
+		return dateFrom;
 	}
 
-	public void setDate(DateTime date) {
-		this.date = date;
+	public void setDateFrom(DateTime dateFrom) {
+		this.dateFrom = dateFrom;
+	}
+
+	public DateTime getDateTo() {
+		return dateTo;
+	}
+
+	public void setDateTo(DateTime dateTo) {
+		this.dateTo = dateTo;
 	}
 
 	public BigDecimal getPrice() {
@@ -126,12 +151,14 @@ public class Tour {
 		return "Tour{" +
 				"tourID=" + tourID +
 				", country=" + country +
+				", type=" + type +
 				", transportType=" + transportType +
 				", category=" + category +
 				", catering=" + catering +
 				", accommodation=" + accommodation +
 				", tourLength=" + tourLength +
-				", date=" + date +
+				", dateFrom=" + dateFrom +
+				", dateTo=" + dateTo +
 				", price=" + price +
 				'}';
 	}

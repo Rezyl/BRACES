@@ -2,7 +2,9 @@ package cz.uhk.braces.dataset;
 
 import cz.uhk.braces.MainLoader;
 import cz.uhk.braces.model.*;
+import cz.uhk.braces.model.register.Register;
 import cz.uhk.braces.service.CRUDService;
+import cz.uhk.braces.service.RegisterItemService;
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +31,9 @@ public class TourTestDataset extends AbstractDataset {
 	@Qualifier("countryServiceImpl")
 	private CRUDService<Country> countryService;
 
+	@Autowired
+	private RegisterItemService registerItemService;
+
 	@Override
 	protected void loadData() {
 		createTestTours();
@@ -38,14 +43,16 @@ public class TourTestDataset extends AbstractDataset {
 		List<Country> countries = countryService.getAll();
 		for (int i = 0; i < 10; i++) {
 			Tour tour = new Tour();
-			tour.setAccommodation(TourAccommodation.APARTMENT);
-			tour.setCategory(TourCategory.RELAX);
-			tour.setCatering(TourCatering.FULL_BOARD);
-			tour.setTransportType(TransportType.BUS);
+			tour.setAccommodation(registerItemService.getByRegister(Register.TOUR_ACCOMMODATION).get(0));
+			tour.setCategory(registerItemService.getByRegister(Register.TOUR_CATEGORY).get(0));
+			tour.setCatering(registerItemService.getByRegister(Register.TOUR_CATEGORY).get(0));
+			tour.setTransportType(registerItemService.getByRegister(Register.TRANSPORT_TYPE).get(0));
+			tour.setType(registerItemService.getByRegister(Register.TOUR_TYPE).get(0));
 
-			tour.setPrice(new BigDecimal(10000));
-			tour.setDate(DateTime.now());
-			tour.setTourLength(10);
+			tour.setPrice(new BigDecimal(i));
+			tour.setDateFrom(DateTime.now());
+			tour.setDateTo(DateTime.now().plusMonths(i));
+			tour.setTourLength(i);
 			tour.setCountry(countries.isEmpty() ? null : countries.get(0));
 			tourService.update(tour);
 		}

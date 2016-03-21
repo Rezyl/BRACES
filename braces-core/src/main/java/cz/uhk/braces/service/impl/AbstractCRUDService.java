@@ -24,7 +24,7 @@ public abstract class AbstractCRUDService<T, R extends JpaRepository<T, Long>> i
 	@Override
 	public T getByID(Long id) {
 		LOG.info("Try to find entity with ID {}", id);
-		return repository.getOne(id);
+		return repository.findOne(id);
 	}
 
 	@Override
