@@ -1,0 +1,127 @@
+<main th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+<script>
+	
+/*
+
+Seznam parametrů zájezdu pro výpis v detailu!!!!!!!
+
+Typ zájezdu
+Destinace
+Doprava
+Cena
+Kategorie
+Ubytování
+Kategorie ubytování - hvězdičky	- vzít z tabulky ubytování
+Velikost pokojů  - kapacita osob - vzít z tabulky ubytování
+Stravování
+Délka zájezdu
+Od
+Do
+Seznam fakultativních služeb - mám dojem, že to souvisí se službou hotelu (praní prádla atd..), tak že se to vezme z tabulky hotelu přes cizí klíč
+Popis zájezdu
+Přílohy
+
+*/
+	
+function loadTour(tourId) {
+	$(document).ready(function () {
+		var url = '/tour/detail/' + tourId + '/';
+
+		$.get(url, function(tour) {
+			$("#tour-detail-table tr").remove();
+
+			$('#tour-detail-table').append('<tr><th>Destinace</th><td>' + tour.country.countryName + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Ubytování</th><td>' + tour.accommodation.name + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Kategorie</th><td>' + tour.category.name + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Stravování</th><td>' + tour.catering.name + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Doprava</th><td>' + tour.transportType.name + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Délka zájezdu</th><td>' + tour.tourLength + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Od</th><td>' + tour.dateFrom + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Do</th><td>' + tour.dateTo + '</td></tr>');
+			$('#tour-detail-table').append('<tr><th>Cena</th><td>' + tour.price+ ' Kč</td></tr>');
+		});
+	});
+}
+</script>
+
+	<article>
+		<h1>Zájezdy</h1>
+
+		<div class="btn-toolbar" role="toolbar" aria-label="Nástroje">
+			<div class="btn-group" role="group">
+				<a href="/tour/createTour/" class="btn btn-default btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat zájezd</a>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Destinace</th>
+						<th>Ubytování</th>
+						<th>Stravování</th>
+						<th>Doprava</th>
+						<th>Od</th>
+						<th>Do</th>
+						<th>Cena</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="tour : ${tours}">
+					<tr>
+						<td th:text="${tour.country.countryName}"></td>
+						<td th:text="${tour.accommodation.name}"></td>
+						<td th:text="${tour.catering.name}"></td>
+						<td th:text="${tour.transportType.name}"></td>
+						<td th:text="${#joda.mediumDate(tour.dateFrom)}"></td>
+						<td th:text="${#joda.mediumDate(tour.dateTo)}"></td>
+						<td th:text="${tour.price}"> Kč</td>
+
+						<td><span th:onclick="|loadTour('${tour.tourID}')|" class="btn btn-primary" title="Zobrazit" data-toggle="modal" data-target="#tour-detail"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span></span></td>
+						<td><a href="/zajezd/upravit/${tour.tourID}/" class="btn btn-default" title="Upravit"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span></a></td>
+						<td><a href="/zajezd/odstranit/${tour.tourID}/" class="btn btn-danger" title="Odstranit"><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="modal fade" id="tour-detail" role="dialog">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content" id="tour-detail-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h2 class="modal-title">Detail zájezdu</h2>
+					</div>
+
+					<div class="modal-body">
+						<div class="table-responsive">
+							<table id="tour-detail-table" class="table table-striped">
+								<!--bude naplnena pomoci JS-->
+							</table>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"></span> Odstranit</button>
+						<button type="button" class="btn btn-default"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</button>
+						<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<nav>
+			<ul class="pagination">
+				<li><a href="#" aria-label="Předchozí"><span aria-hidden="true">&laquo;</span></a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#" aria-label="Další"><span aria-hidden="true">&raquo;</span></a></li>
+			</ul>
+		</nav>
+	</article>
+</main>
