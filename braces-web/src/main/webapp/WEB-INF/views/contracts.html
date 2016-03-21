@@ -1,0 +1,48 @@
+<main th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+	<article>
+		<h1>Smlouvy</h1>
+
+		<div class="btn-toolbar" role="toolbar" aria-label="Nástroje">
+			<div class="btn-group" role="group">
+				<a href="#" class="btn btn-default btn-success"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Přidat smlouvu</a>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>ID zájezdu</th>
+						<th>Jméno</th>
+						<th>Přijmení</th>
+						<th>Uhrazená částka</th>
+						<th>Datum vytvoření</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="contract : ${contracts}">
+					<tr>
+						<td th:text="${contract.tour.tourID}"></td>
+						<td th:text="${contract.contactParticipant.firstName}"></td>
+						<td th:text="${contract.contactParticipant.lastName}"></td>
+						<td th:text="${contract.pricePayed}"></td>
+						<td th:text="${contract.creationDate}"></td>
+						<td><a href="#" class="btn btn-default btn-primary" title="Zobrazit"><span class="glyphicon glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<nav>
+			<ul class="pagination">
+				<li><a href="#" aria-label="Předchozí"><span aria-hidden="true">&laquo;</span></a></li>
+				<li class="active"><a href="#">1</a></li>
+				<li><a href="#">2</a></li>
+				<li><a href="#">3</a></li>
+				<li><a href="#">4</a></li>
+				<li><a href="#">5</a></li>
+				<li><a href="#" aria-label="Další"><span aria-hidden="true">&raquo;</span></a></li>
+			</ul>
+		</nav>
+	</article>
+</main>
