@@ -41,8 +41,8 @@ public class Tour {
 	private RegisterItem catering;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "accommodation", referencedColumnName = "code", nullable = false)
-	private RegisterItem accommodation;
+	@JoinColumn(name = "accommodation", referencedColumnName = "accomodation_id", nullable = false)
+	private Accomodation accommodation;
 
 	@Column(name = "length")
 	private int tourLength;
@@ -106,11 +106,11 @@ public class Tour {
 		this.catering = catering;
 	}
 
-	public RegisterItem getAccommodation() {
+	public Accomodation getAccommodation() {
 		return accommodation;
 	}
 
-	public void setAccommodation(RegisterItem accommodation) {
+	public void setAccommodation(Accomodation accommodation) {
 		this.accommodation = accommodation;
 	}
 

@@ -26,6 +26,9 @@ public class CreateTestDataset extends AbstractDataset {
 
 	@Autowired
 	private RegisterItemDataset registerItemDataset;
+	
+	@Autowired
+	private AccomodationTestDataset accomodationTestDataset;
 
 	public static void main(String[] args) {
 		MainLoader.load("/braces-initial-data-context.xml", "createTestDataset");
@@ -35,6 +38,7 @@ public class CreateTestDataset extends AbstractDataset {
 	protected void loadData() {
 		registerItemDataset.load();
 		countryDataset.load();
+		accomodationTestDataset.load();
 		tourTestDataset.load();
 		tourParticipantTestDataset.load();
 		contractTestDataset.load();
