@@ -14,9 +14,9 @@ import cz.uhk.braces.service.CRUDService;
 @Controller
 @RequestMapping(AccomodationController.ACCOMODATION_DOMAIN)
 public class AccomodationController {
-	public static final String ACCOMODATION_DOMAIN = "accomodation";
+	public static final String ACCOMODATION_DOMAIN = "accomodation/";
 	private static final String SHOW_ALL_ACCOMODATION_URL = "showAllAccomodations/";
-	private static final String ALL_ACCOMODATIONS_VIEW = "tour/accomodation";
+	private static final String ALL_ACCOMODATIONS_VIEW = "accomodation";
 	
 	@Autowired
 	private CRUDService<Accomodation> accomodationService;

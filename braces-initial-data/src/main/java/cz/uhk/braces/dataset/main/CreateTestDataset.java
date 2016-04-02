@@ -38,9 +38,9 @@ public class CreateTestDataset extends AbstractDataset {
 	protected void loadData() {
 		registerItemDataset.load();
 		countryDataset.load();
+		tourParticipantTestDataset.load();
 		accomodationTestDataset.load();
 		tourTestDataset.load();
-		tourParticipantTestDataset.load();
 		contractTestDataset.load();
 	}
 }

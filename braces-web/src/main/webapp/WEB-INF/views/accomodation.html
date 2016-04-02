@@ -23,15 +23,18 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
+					<tr th:each="accomodation : ${accomodations}">
+						<td th:text="${accomodation.accomodationType.name}"></td>
+						<td th:text="${accomodation.rating}"></td>
+						<td th:text="${accomodation.name}"></td>
+						<td th:text="${accomodation.address.state}"></td>
+						<td th:text="${accomodation.address.city}"></td>
+						<td th:text="${accomodation.capacity}"></td>
+						<td>
+							<div th:each="service : ${accomodation.optionalServices}" th:text="${service.name} + ', '">
+							</div>
+						</td>
+						<td th:text="${accomodation.price}"></td>
 						<td><a href="/ubytovani/rezervovat//" class="btn btn-primary" title="Rezervovat"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Rezervovat</a></td>
 					</tr>
 				</tbody>

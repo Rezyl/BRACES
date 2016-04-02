@@ -43,7 +43,7 @@ public class AccomodationTestDataset extends AbstractDataset{
 		for (int i = 0; i < 5; i++) {
 			Accomodation accomodation = new Accomodation();
 			accomodation.setAccomodationType(registerItemService.getByRegister(Register.TOUR_ACCOMMODATION).get(0));
-			accomodation.setAddress(addressService.getByID(1l));
+			accomodation.setAddress(addressService.getAll().get(0));
 			accomodation.setCapacity(111);
 			accomodation.setName("U Vody");
 			accomodation.setPrice(new BigDecimal(125));
@@ -58,7 +58,7 @@ public class AccomodationTestDataset extends AbstractDataset{
 			
 			accomodation = new Accomodation();
 			accomodation.setAccomodationType(registerItemService.getByRegister(Register.TOUR_ACCOMMODATION).get(1));
-			accomodation.setAddress(addressService.getByID(0l));
+			accomodation.setAddress(addressService.getAll().get(0));
 			accomodation.setCapacity(111);
 			accomodation.setName("U Sklípku");
 			accomodation.setPrice(new BigDecimal(100));

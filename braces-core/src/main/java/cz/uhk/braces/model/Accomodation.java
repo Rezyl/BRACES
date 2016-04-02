@@ -45,7 +45,7 @@ public class Accomodation {
 	private List<RegisterItem> optionalServices;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "address_fk", referencedColumnName = "address_id", nullable = true)
+	@JoinColumn(name = "address_fk", referencedColumnName = "address_id", nullable = false)
 	private Address address;
 	
 	@Column
