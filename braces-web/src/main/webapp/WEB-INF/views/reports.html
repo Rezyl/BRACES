@@ -20,6 +20,12 @@
 			<canvas id="hotel-chart"></canvas>
 		</div>
 	</article>
+
+    <div th:text="${day}" id="report-day-data" style="display: none;"></div>
+    <div th:text="${data1}" id="report-data1-data" style="display: none;"></div>
+    <div th:text="${data2}" id="report-data2-data" style="display: none;"></div>
+
+
 <script>
 var options = {
 	animationSteps : 60,
@@ -27,10 +33,10 @@ var options = {
 	responsive: true,
 	bezierCurve : true,
 	scaleBeginAtZero: true,
-}
+};
 
 var data = {
-    labels: ["Leden", "Únor", "Březen", "Duben", "Květen", "Červen", "Červenec"],
+    labels: $('#report-day-data').text().split(","),
     datasets: [
         {
             label: "Uzavřené smlouvy",
@@ -40,7 +46,7 @@ var data = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(151,187,205,1)",
-            data: [65, 59, 80, 81, 56, 55, 40]
+            data: $('#report-data1-data').text().split(",")
         },
         {
             label: "Vypovězené smlouvy",
@@ -50,7 +56,7 @@ var data = {
             pointStrokeColor: "#fff",
             pointHighlightFill: "#fff",
             pointHighlightStroke: "rgba(220,220,220,1)",
-            data: [28, 28, 10, 2, 26, 27, 15]
+            data: $('#report-data2-data').text().split(",")
         }
     ]
 };

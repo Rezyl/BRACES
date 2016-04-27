@@ -1,5 +1,7 @@
 package cz.uhk.braces.controller;
 
+import cz.uhk.braces.dto.TourDTO;
+import cz.uhk.braces.model.Accomodation;
 import cz.uhk.braces.model.Country;
 import cz.uhk.braces.model.Tour;
 import cz.uhk.braces.model.register.Register;
@@ -25,12 +27,18 @@ public class TourController {
 	public static final String TOUR_DOMAIN = "tour";
 	private static final String SHOW_ALL_TOURS_URL = "showAllTours/";
 
-	private static final String ALL_TOURS_VIEW = "tour/tours";
+	private static final String ALL_TOURS_VIEW = "tour/all";
 	private static final String DETAIL_TOUR_URL = "detail/{id}/";
 	private static final String NEW_TOUR_FORM_URL = "createTour/";
 
-	private static final String NEW_TOUR_FORM_VIEW = "tour/newTour";
+	private static final String NEW_TOUR_FORM_VIEW = "tour/add";
 	private static final String SAVE_TOUR_URL = "save/";
+
+	private static final String EDIT_TOUR_FORM_URL = "updateTour";
+	private static final String EDIT_TOUR_FORM_VIEW = "tour/edit";
+	private static final String UPDATE_TOUR_URL = "update/";
+
+	private static final String DELETE_TOUR_URL = "delete";
 	@Autowired
 	private CRUDService<Tour> tourService;
 
@@ -40,6 +48,10 @@ public class TourController {
 	@Autowired
 	@Qualifier("countryServiceImpl")
 	private CRUDService<Country> countryService;
+
+	@Autowired
+	@Qualifier("accomodationServiceImpl")
+	private CRUDService<Accomodation> accomodationService;
 
 
 	@RequestMapping(value = SHOW_ALL_TOURS_URL, method = RequestMethod.GET)
@@ -51,14 +63,14 @@ public class TourController {
 	}
 
 	@RequestMapping(value = DETAIL_TOUR_URL, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody
-	Tour showDetail(@PathVariable Long id) {
-		return tourService.getByID(id);
+	public String showDetail(Model model, @PathVariable Long id) {
+		model.addAttribute("tour", tourService.getByID(id));
+		return "tour/detail";
 	}
 
 	@RequestMapping(value = NEW_TOUR_FORM_URL, method = RequestMethod.GET)
 	public String newTourForm(Model model) {
-		Tour tour = new Tour();
+		TourDTO tour = new TourDTO();
 		model.addAttribute("tour", tour);
 		//prepare selects
 		model.addAttribute("countries", countryService.getAll());
@@ -66,14 +78,42 @@ public class TourController {
 		model.addAttribute("transports", registerItemService.getByRegister(Register.TRANSPORT_TYPE));
 		model.addAttribute("categories", registerItemService.getByRegister(Register.TOUR_CATEGORY));
 		model.addAttribute("cateringTypes", registerItemService.getByRegister(Register.TOUR_CATERING));
-		model.addAttribute("accommodationTypes", registerItemService.getByRegister(Register.TOUR_ACCOMMODATION));
+		model.addAttribute("accommodationTypes", accomodationService.getAll());
 		return NEW_TOUR_FORM_VIEW;
 	}
 
 	@RequestMapping(value = SAVE_TOUR_URL, method = RequestMethod.POST)
-	public String saveTour(@ModelAttribute("tour") Tour tour) {
+	public String saveTour(@ModelAttribute("tour") TourDTO tour) {
 
-		tourService.update(tour);
-		return "redirect:"+ TOUR_DOMAIN + "/" + SHOW_ALL_TOURS_URL;
+		tourService.update(tour.transformToEntity(registerItemService, countryService, accomodationService));
+		return "redirect:/"+ TOUR_DOMAIN + "/" + SHOW_ALL_TOURS_URL;
+	}
+
+	@RequestMapping(value = EDIT_TOUR_FORM_URL, method = RequestMethod.GET)
+	public String editTourForm(Model model, @RequestParam("id") Long tourID) {
+		Tour tour = tourService.getByID(tourID);
+		model.addAttribute("tour", new TourDTO(tour));
+
+		//prepare selects
+		model.addAttribute("countries", countryService.getAll());
+		model.addAttribute("types", registerItemService.getByRegister(Register.TOUR_TYPE));
+		model.addAttribute("transports", registerItemService.getByRegister(Register.TRANSPORT_TYPE));
+		model.addAttribute("categories", registerItemService.getByRegister(Register.TOUR_CATEGORY));
+		model.addAttribute("cateringTypes", registerItemService.getByRegister(Register.TOUR_CATERING));
+		model.addAttribute("accommodationTypes", accomodationService.getAll());
+		return EDIT_TOUR_FORM_VIEW;
+	}
+
+	@RequestMapping(value = UPDATE_TOUR_URL, method = RequestMethod.POST)
+	public String updateTour(@ModelAttribute("tour") TourDTO tour) {
+
+		tourService.update(tour.transformToEntity(registerItemService, countryService, accomodationService));
+		return "redirect:/"+ TOUR_DOMAIN + "/" + SHOW_ALL_TOURS_URL;
+	}
+
+	@RequestMapping(value = DELETE_TOUR_URL, method = RequestMethod.GET)
+	public String deleteTour(@RequestParam("id") Long tourID) {
+		tourService.delete(tourID);
+		return "redirect:/"+ TOUR_DOMAIN + "/" + SHOW_ALL_TOURS_URL;
 	}
 }

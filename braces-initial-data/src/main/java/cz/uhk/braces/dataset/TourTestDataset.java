@@ -60,6 +60,7 @@ public class TourTestDataset extends AbstractDataset {
 			tour.setDateTo(DateTime.now().plusMonths(i));
 			tour.setTourLength(i);
 			tour.setCountry(countries.isEmpty() ? null : countries.get(0));
+			tour.setCatalog(true);
 			tourService.update(tour);
 
 

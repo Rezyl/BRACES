@@ -58,6 +58,12 @@ public class Tour {
 	@Column
 	private BigDecimal price;
 
+	@Column
+	private String description;
+
+	@Column
+	private Boolean catalog;
+
 	public Long getTourID() {
 		return tourID;
 	}
@@ -146,6 +152,22 @@ public class Tour {
 		this.price = price;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Boolean getCatalog() {
+		return catalog;
+	}
+
+	public void setCatalog(Boolean catalog) {
+		this.catalog = catalog;
+	}
+
 	@Override
 	public String toString() {
 		return "Tour{" +
@@ -160,6 +182,8 @@ public class Tour {
 				", dateFrom=" + dateFrom +
 				", dateTo=" + dateTo +
 				", price=" + price +
+				", description='" + description + '\'' +
+				", catalog=" + catalog +
 				'}';
 	}
 }
