@@ -16,6 +16,9 @@ public class Address {
 	@Column(name = "address_id")
 	private Long addressID;
 	
+	@Column(name = "state", nullable = false)
+	private String state;
+
 	@Column(name = "building_number", nullable = false)
 	private String buildingNumber;
 	
@@ -66,6 +69,14 @@ public class Address {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+	
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 	

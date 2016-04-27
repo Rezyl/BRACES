@@ -1,5 +1,6 @@
 package cz.uhk.braces.dataset;
 
+import cz.uhk.braces.MainLoader;
 import cz.uhk.braces.model.register.Register;
 import cz.uhk.braces.model.register.RegisterItem;
 import cz.uhk.braces.service.RegisterItemService;
@@ -15,7 +16,7 @@ import java.util.List;
  * User: Lukas Rezner
  * Date: 20.3.16
  */
-@Component
+@Component("register-item-dataset")
 public class RegisterItemDataset extends AbstractDataset {
 	private static final Logger LOG = LoggerFactory.getLogger(RegisterItemDataset.class);
 
@@ -65,6 +66,14 @@ public class RegisterItemDataset extends AbstractDataset {
 		toStore.add(new RegisterItem("TENT", "Stan", Register.TOUR_ACCOMMODATION));
 		toStore.add(new RegisterItem("APARTMENT", "Apartmán", Register.TOUR_ACCOMMODATION));
 		toStore.add(new RegisterItem("STUDIO", "Studio", Register.TOUR_ACCOMMODATION));
+//		Fakultativní služby
+		toStore.add(new RegisterItem("LAUNDRY", "Praní prádla", Register.OPTIONAL_SERVICE));
+		toStore.add(new RegisterItem("SWIMMING_POOL", "Bazén", Register.OPTIONAL_SERVICE));
+		toStore.add(new RegisterItem("WELLNESS", "Wellness", Register.OPTIONAL_SERVICE));
+		toStore.add(new RegisterItem("HAIRDRESSER", "Kadeřnictví", Register.OPTIONAL_SERVICE));
+		toStore.add(new RegisterItem("PEDICURE", "Pedicure", Register.OPTIONAL_SERVICE));
+		toStore.add(new RegisterItem("LIBRARY", "Knihovna", Register.OPTIONAL_SERVICE));
+		toStore.add(new RegisterItem("FITNESS", "Posilovna", Register.OPTIONAL_SERVICE));
 
 		saveRegisterItems(toStore);
 	}
@@ -74,5 +83,9 @@ public class RegisterItemDataset extends AbstractDataset {
 			registerItemService.update(registerItem);
 			LOG.info("It was created register item: {}", registerItem);
 		}
+	}
+	
+	public static void main(String[] args) {
+		MainLoader.load("/braces-initial-data-context.xml", "register-item-dataset");
 	}
 }

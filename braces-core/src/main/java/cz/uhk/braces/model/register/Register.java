@@ -10,7 +10,8 @@ public enum Register {
 	TRANSPORT_TYPE,
 	TOUR_CATEGORY,
 	TOUR_CATERING,
-	TOUR_ACCOMMODATION;
+	TOUR_ACCOMMODATION,
+	OPTIONAL_SERVICE;
 
 	public static Register getByCode(String code) {
 		for (Register register : values()) {

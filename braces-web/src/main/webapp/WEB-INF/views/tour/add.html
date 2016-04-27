@@ -1,0 +1,85 @@
+<main th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+    <article>
+        <h1>Nový zájezd</h1>
+
+		<form role="form" th:action="@{/tour/save/}" method="post" th:object="${tour}" id="new-tour-form">
+			<!--<input type="hidden" th:field="*{tourID}" />-->
+			<div class="form-group">
+				<label for="typeSelect">Typ zájezdu</label>
+				<select th:field="*{type}" th:remove="all-but-first" class="form-control" id="typeSelect">
+					<option th:each="type : ${types}" th:value="${type.code}" th:text="${type.name}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="country">Destinace</label>
+				<select th:field="*{country}" th:remove="all-but-first" class="form-control" id="country">
+					<option th:each="country : ${countries}" th:value="${country.countryID}" th:text="${country.countryName}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="transport">Doprava</label>
+				<select th:field="*{transportType}" th:remove="all-but-first" class="form-control" id="transport">
+					<option th:each="transport : ${transports}" th:value="${transport.code}" th:text="${transport.name}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="price">Cena</label>
+				<input type="text" name="price" th:field="*{price}" class="form-control" id="price" />
+			</div>
+
+			<div class="form-group">
+				<label for="category">Kategorie</label>
+				<select th:field="*{category}" th:remove="all-but-first" class="form-control" id="category">
+					<option th:each="category : ${categories}" th:value="${category.code}" th:text="${category.name}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="accommodation">Ubytování</label>
+                <select th:field="*{accommodation}" th:remove="all-but-first" class="form-control" id="accommodation">
+                    <option th:each="accommodation : ${accommodationTypes}" th:value="${accommodation.accomodationID}" th:text="${accommodation.name}"></option>
+                </select>
+			</div>
+
+			<div class="form-group">
+				<label for="cateringTypes">Stravování</label>
+				<select th:field="*{catering}" th:remove="all-but-first" class="form-control" id="cateringTypes">
+					<option th:each="catering : ${cateringTypes}" th:value="${catering.code}" th:text="${catering.name}"></option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="tourLength">Délka zájezdu</label>
+				<input type="number" th:field="*{tourLength}" name="" min="tourLength" class="form-control" id="tourLength" />
+			</div>
+
+			<div class="form-group">
+				<label for="dateFrom">Od</label>
+				<input type="date" name="dateFrom" th:field="*{dateFrom}" class="form-control" id="dateFrom" />
+			</div>
+
+			<div class="form-group">
+				<label for="dateTo">Do</label>
+				<input type="date" name="dateTo" th:field="*{dateTo}" class="form-control" id="dateTo" />
+			</div>
+
+			<div class="form-group">
+				<label for="description">Popis zájezdu</label>
+				<textarea th:field="*{description}" name="description" class="form-control" id="description"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="accommodation">Zobrazení v katalogu</label>
+				<select th:field="*{catalog}" class="form-control" id="catalog">
+					<option value="true">Katalogový zájezd</option>
+					<option value="false">Individuální zájezd</option>
+				</select>
+			</div>
+
+			<button type="submit" class="btn btn-lg btn-success">Uložit</button>
+		</form>
+    </article>
+</main>

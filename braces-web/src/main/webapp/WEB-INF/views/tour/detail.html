@@ -1,0 +1,40 @@
+<main th:fragment="content" xmlns:th="http://www.thymeleaf.org">
+
+    <div class="modal fade" id="tour-detail-target" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="tour-detail-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h2 class="modal-title">Detail zájezdu</h2>
+                </div>
+
+                <div class="modal-body" id="tour-detail-source-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tr><th>Doprava</th><td th:text="${tour.type.name}"></td></tr>
+                            <tr><th>Destinace</th><td th:text="${tour.country.countryName}"></td></tr>
+                            <tr><th>Doprava</th><td th:text="${tour.transportType.name}"></td></tr>
+                            <tr><th>Kategorie</th><td th:text="${tour.category.name}"></td></tr>
+                            <tr><th>Ubytování</th><td th:text="${tour.accommodation.name}"></td></tr>
+                            <tr><th>Stravování</th><td th:text="${tour.catering.name}"></td></tr>
+                            <tr><th>Doprava</th><td th:text="${tour.transportType.name}"></td></tr>
+                            <tr><th>Délka zájezdu</th><td th:text="${tour.tourLength}"></td></tr>
+                            <tr><th>Od</th><td th:text="${#joda.mediumDate(tour.dateFrom)}"></td></tr>
+                            <tr><th>Do</th><td th:text="${#joda.mediumDate(tour.dateTo)}"></td></tr>
+
+                            <tr><th>Popis</th><td th:text="${tour.description}"></td></tr>
+                            <tr><th>Cena</th><td th:text="${tour.price}"> Kč</td></tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="modal-footer" id="tour-detail-source-footer">
+                    <a th:href="@{/tour/updateTour(id=${tour.tourID})}" class="btn btn-default" title="Upravit"><span class="glyphicon glyphicon glyphicon-pencil" aria-hidden="true"></span> Upravit</a>
+                    <a th:href="@{/tour/delete(id=${tour.tourID})}" class="btn btn-default btn-danger" title="Odstranit"><span class="glyphicon glyphicon glyphicon-trash" aria-hidden="true"> Odstranit</span></a>
+                    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Objednat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

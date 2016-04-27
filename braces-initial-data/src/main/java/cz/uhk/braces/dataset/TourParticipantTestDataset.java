@@ -30,6 +30,7 @@ public class TourParticipantTestDataset extends AbstractDataset{
 			address.setCity("Hradec Králové");
 			address.setPostalCode("11144");
 			address.setStreet("Hradecká");
+			address.setState("Česká republika");
 			addressService.update(address);
 			
 			TourParticipant tourParticipant = new TourParticipant();

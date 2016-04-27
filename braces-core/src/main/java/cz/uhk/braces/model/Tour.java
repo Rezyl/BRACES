@@ -41,8 +41,8 @@ public class Tour {
 	private RegisterItem catering;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "accommodation", referencedColumnName = "code", nullable = false)
-	private RegisterItem accommodation;
+	@JoinColumn(name = "accommodation", referencedColumnName = "accomodation_id", nullable = false)
+	private Accomodation accommodation;
 
 	@Column(name = "length")
 	private int tourLength;
@@ -57,6 +57,12 @@ public class Tour {
 
 	@Column
 	private BigDecimal price;
+
+	@Column
+	private String description;
+
+	@Column
+	private Boolean catalog;
 
 	public Long getTourID() {
 		return tourID;
@@ -106,11 +112,11 @@ public class Tour {
 		this.catering = catering;
 	}
 
-	public RegisterItem getAccommodation() {
+	public Accomodation getAccommodation() {
 		return accommodation;
 	}
 
-	public void setAccommodation(RegisterItem accommodation) {
+	public void setAccommodation(Accomodation accommodation) {
 		this.accommodation = accommodation;
 	}
 
@@ -146,6 +152,22 @@ public class Tour {
 		this.price = price;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Boolean getCatalog() {
+		return catalog;
+	}
+
+	public void setCatalog(Boolean catalog) {
+		this.catalog = catalog;
+	}
+
 	@Override
 	public String toString() {
 		return "Tour{" +
@@ -160,6 +182,8 @@ public class Tour {
 				", dateFrom=" + dateFrom +
 				", dateTo=" + dateTo +
 				", price=" + price +
+				", description='" + description + '\'' +
+				", catalog=" + catalog +
 				'}';
 	}
 }

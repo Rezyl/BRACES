@@ -30,9 +30,15 @@ public class TourTestDataset extends AbstractDataset {
 	@Autowired
 	@Qualifier("countryServiceImpl")
 	private CRUDService<Country> countryService;
+	
+
+	@Autowired
+	@Qualifier("accomodationServiceImpl")
+	private CRUDService<Accomodation> accomodationService;
 
 	@Autowired
 	private RegisterItemService registerItemService;
+	
 
 	@Override
 	protected void loadData() {
@@ -43,9 +49,9 @@ public class TourTestDataset extends AbstractDataset {
 		List<Country> countries = countryService.getAll();
 		for (int i = 0; i < 10; i++) {
 			Tour tour = new Tour();
-			tour.setAccommodation(registerItemService.getByRegister(Register.TOUR_ACCOMMODATION).get(0));
+			tour.setAccommodation(accomodationService.getAll().get(0));
 			tour.setCategory(registerItemService.getByRegister(Register.TOUR_CATEGORY).get(0));
-			tour.setCatering(registerItemService.getByRegister(Register.TOUR_CATEGORY).get(0));
+			tour.setCatering(registerItemService.getByRegister(Register.TOUR_CATERING).get(0));
 			tour.setTransportType(registerItemService.getByRegister(Register.TRANSPORT_TYPE).get(0));
 			tour.setType(registerItemService.getByRegister(Register.TOUR_TYPE).get(0));
 
@@ -54,7 +60,10 @@ public class TourTestDataset extends AbstractDataset {
 			tour.setDateTo(DateTime.now().plusMonths(i));
 			tour.setTourLength(i);
 			tour.setCountry(countries.isEmpty() ? null : countries.get(0));
+			tour.setCatalog(true);
 			tourService.update(tour);
+
+
 		}
 	}
 
